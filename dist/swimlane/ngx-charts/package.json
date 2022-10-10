@@ -1,10 +1,10 @@
 {
-  "name": "javierBaro/ngx-charts-v2",
+  "name": "@javierbaromorales/ngx-charts-v2",
   "version": "20.1.0",
   "description": "Declarative Charting Framework for Angular",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/javierBaro/ngx-charts.git"
+    "url": "git://github.com/jbarom/ngx-charts.git"
   },
   "keywords": [
     "angular",
@@ -59,23 +59,23 @@
     "rfdc": "^1.3.0",
     "tslib": "^2.0.0"
   },
-  "module": "fesm2015/javierBaro-ngx-charts-v2.mjs",
-  "es2020": "fesm2020/javierBaro-ngx-charts-v2.mjs",
-  "esm2020": "esm2020/javierBaro-ngx-charts-v2.mjs",
-  "fesm2020": "fesm2020/javierBaro-ngx-charts-v2.mjs",
-  "fesm2015": "fesm2015/javierBaro-ngx-charts-v2.mjs",
-  "typings": "javierBaro-ngx-charts-v2.d.ts",
+  "module": "fesm2015/javierbaromorales-ngx-charts-v2.mjs",
+  "es2020": "fesm2020/javierbaromorales-ngx-charts-v2.mjs",
+  "esm2020": "esm2020/javierbaromorales-ngx-charts-v2.mjs",
+  "fesm2020": "fesm2020/javierbaromorales-ngx-charts-v2.mjs",
+  "fesm2015": "fesm2015/javierbaromorales-ngx-charts-v2.mjs",
+  "typings": "javierbaromorales-ngx-charts-v2.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./javierBaro-ngx-charts-v2.d.ts",
-      "esm2020": "./esm2020/javierBaro-ngx-charts-v2.mjs",
-      "es2020": "./fesm2020/javierBaro-ngx-charts-v2.mjs",
-      "es2015": "./fesm2015/javierBaro-ngx-charts-v2.mjs",
-      "node": "./fesm2015/javierBaro-ngx-charts-v2.mjs",
-      "default": "./fesm2020/javierBaro-ngx-charts-v2.mjs"
+      "types": "./javierbaromorales-ngx-charts-v2.d.ts",
+      "esm2020": "./esm2020/javierbaromorales-ngx-charts-v2.mjs",
+      "es2020": "./fesm2020/javierbaromorales-ngx-charts-v2.mjs",
+      "es2015": "./fesm2015/javierbaromorales-ngx-charts-v2.mjs",
+      "node": "./fesm2015/javierbaromorales-ngx-charts-v2.mjs",
+      "default": "./fesm2020/javierbaromorales-ngx-charts-v2.mjs"
     }
   },
   "sideEffects": false

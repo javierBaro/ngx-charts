@@ -378,12 +378,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
       </div>
     </div>
   `, encapsulation: ViewEncapsulation.None, styles: [".ngx-charts-tooltip-content{position:fixed;border-radius:3px;z-index:5000;display:block;font-weight:400;opacity:0;pointer-events:none!important}.ngx-charts-tooltip-content.type-popover{background:#fff;color:#060709;border:1px solid #72809b;box-shadow:0 1px 3px #0003,0 1px 1px #00000024,0 2px 1px -1px #0000001f;font-size:13px;padding:4px}.ngx-charts-tooltip-content.type-popover .tooltip-caret{position:absolute;z-index:5001;width:0;height:0}.ngx-charts-tooltip-content.type-popover .tooltip-caret.position-left{border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:7px solid #fff}.ngx-charts-tooltip-content.type-popover .tooltip-caret.position-top{border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid #fff}.ngx-charts-tooltip-content.type-popover .tooltip-caret.position-right{border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:7px solid #fff}.ngx-charts-tooltip-content.type-popover .tooltip-caret.position-bottom{border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #fff}.ngx-charts-tooltip-content.type-tooltip{color:#fff;background:rgba(0,0,0,.75);font-size:12px;padding:0 10px;text-align:center;pointer-events:auto}.ngx-charts-tooltip-content.type-tooltip .tooltip-caret.position-left{border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:7px solid rgba(0,0,0,.75)}.ngx-charts-tooltip-content.type-tooltip .tooltip-caret.position-top{border-left:7px solid transparent;border-right:7px solid transparent;border-top:7px solid rgba(0,0,0,.75)}.ngx-charts-tooltip-content.type-tooltip .tooltip-caret.position-right{border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:7px solid rgba(0,0,0,.75)}.ngx-charts-tooltip-content.type-tooltip .tooltip-caret.position-bottom{border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid rgba(0,0,0,.75)}.ngx-charts-tooltip-content .tooltip-label{display:block;line-height:1em;padding:8px 5px 5px;font-size:1em}.ngx-charts-tooltip-content .tooltip-val{display:block;font-size:1.3em;line-height:1em;padding:0 5px 8px}.ngx-charts-tooltip-content .tooltip-caret{position:absolute;z-index:5001;width:0;height:0}.ngx-charts-tooltip-content.position-right{transform:translate(10px)}.ngx-charts-tooltip-content.position-left{transform:translate(-10px)}.ngx-charts-tooltip-content.position-top{transform:translateY(-10px)}.ngx-charts-tooltip-content.position-bottom{transform:translateY(10px)}.ngx-charts-tooltip-content.animate{opacity:1;transition:opacity .3s,transform .3s;transform:translate(0);pointer-events:auto}.area-tooltip-container{padding:5px 0;pointer-events:none}.tooltip-item{text-align:left;line-height:1.2em;padding:5px 0}.tooltip-item .tooltip-item-color{display:inline-block;height:12px;width:12px;margin-right:5px;color:#5b646b;border-radius:3px}\n"] }]
-        }], ctorParameters: function () {
-        return [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { host: [{
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { host: [{
                 type: Input
             }], showCaret: [{
                 type: Input
@@ -459,16 +457,16 @@ class InjectionRegisteryService {
         return this.injectionService.appendComponent(type, bindings);
     }
     assignDefaults(bindings) {
-        const inputs = Object.assign({}, this.defaults.inputs);
-        const outputs = Object.assign({}, this.defaults.outputs);
+        const inputs = { ...this.defaults.inputs };
+        const outputs = { ...this.defaults.outputs };
         if (!bindings.inputs && !bindings.outputs) {
             bindings = { inputs: bindings };
         }
         if (inputs) {
-            bindings.inputs = Object.assign(Object.assign({}, inputs), bindings.inputs);
+            bindings.inputs = { ...inputs, ...bindings.inputs };
         }
         if (outputs) {
-            bindings.outputs = Object.assign(Object.assign({}, outputs), bindings.outputs);
+            bindings.outputs = { ...outputs, ...bindings.outputs };
         }
         return bindings;
     }
@@ -1276,12 +1274,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                     selector: 'base-chart',
                     template: ` <div></div> `
                 }]
-        }], ctorParameters: function () {
-        return [{ type: i0.ElementRef }, { type: i0.NgZone }, { type: i0.ChangeDetectorRef }, { type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { results: [{
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.NgZone }, { type: i0.ChangeDetectorRef }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { results: [{
                 type: Input
             }], view: [{
                 type: Input
@@ -1600,12 +1596,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
   `,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { scale: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { scale: [{
                 type: Input
             }], orient: [{
                 type: Input
@@ -2104,12 +2098,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
   `,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { scale: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { scale: [{
                 type: Input
             }], orient: [{
                 type: Input
@@ -3007,12 +2999,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                         ])
                     ]
                 }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { data: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { data: [{
                 type: Input
             }], type: [{
                 type: Input
@@ -3793,12 +3783,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                         ])
                     ]
                 }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { dims: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { dims: [{
                 type: Input
             }], xSet: [{
                 type: Input
@@ -7254,9 +7242,8 @@ class SeriesHorizontal {
         }
         else {
             this.barsForDataLabels = this.series.map(d => {
-                var _a;
                 const section = {};
-                section.series = (_a = this.seriesName) !== null && _a !== void 0 ? _a : d.label;
+                section.series = this.seriesName ?? d.label;
                 section.total = d.value;
                 section.x = this.xScale(0);
                 section.y = this.yScale(d.label);
@@ -9435,9 +9422,8 @@ class SeriesVerticalComponent {
         }
         else {
             this.barsForDataLabels = this.series.map(d => {
-                var _a;
                 const section = {};
-                section.series = (_a = this.seriesName) !== null && _a !== void 0 ? _a : d.label;
+                section.series = this.seriesName ?? d.label;
                 section.total = d.value;
                 section.x = this.xScale(d.label);
                 section.y = this.yScale(0);
@@ -9657,12 +9643,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                         ])
                     ]
                 }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { dims: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { dims: [{
                 type: Input
             }], type: [{
                 type: Input
@@ -11722,8 +11706,8 @@ class BoxComponent {
             const path0 = this;
             const path1 = this.cloneNode();
             path1.setAttribute('d', d1);
-            const n0 = path0 === null || path0 === void 0 ? void 0 : path0.getTotalLength();
-            const n1 = path1 === null || path1 === void 0 ? void 0 : path1.getTotalLength();
+            const n0 = path0?.getTotalLength();
+            const n1 = path1?.getTotalLength();
             // Uniform sampling of distance based on specified precision.
             const distances = [0];
             let i = 0;
@@ -12818,12 +12802,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                         ])
                     ]
                 }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { data: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { data: [{
                 type: Input
             }], xScale: [{
                 type: Input
@@ -14168,12 +14150,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                         ])
                     ]
                 }]
-        }], ctorParameters: function () {
-        return [{ type: i0.ElementRef }, { type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }, { type: i1.DomSanitizer }];
-    }, propDecorators: { path: [{
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }, { type: i1.DomSanitizer }]; }, propDecorators: { path: [{
                 type: Input
             }], stroke: [{
                 type: Input
@@ -15215,12 +15195,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
   `,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { data: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { data: [{
                 type: Input
             }], radius: [{
                 type: Input
@@ -15553,7 +15531,10 @@ class PolarChartComponent extends BaseChartComponent {
         const halfHeight = Math.floor(this.dims.height / 2);
         const outerRadius = (this.outerRadius = Math.min(halfHeight / 1.5, halfWidth / 1.5));
         const yOffset = Math.max(0, halfHeight - outerRadius);
-        this.yAxisDims = Object.assign(Object.assign({}, this.dims), { width: halfWidth });
+        this.yAxisDims = {
+            ...this.dims,
+            width: halfWidth
+        };
         this.transform = `translate(${this.dims.xOffset}, ${this.margin[0]})`;
         this.transformYAxis = `translate(0, ${yOffset})`;
         this.labelOffset = this.dims.height + 40;
@@ -17751,12 +17732,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
   `,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }]
-        }], ctorParameters: function () {
-        return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: i0.NgZone }, { type: undefined, decorators: [{
-                        type: Inject,
-                        args: [PLATFORM_ID]
-                    }] }];
-    }, propDecorators: { color: [{
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: i0.NgZone }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [PLATFORM_ID]
+                }] }]; }, propDecorators: { color: [{
                 type: Input
             }], bandColor: [{
                 type: Input
@@ -19611,6 +19590,8 @@ function tickFormat(fieldType, groupByType) {
     };
 }
 
+/* eslint-disable @typescript-eslint/no-empty-interface */
+
 /*
  * Public API Surface of ngx-charts
  */
@@ -19620,4 +19601,4 @@ function tickFormat(fieldType, groupByType) {
  */
 
 export { AdvancedLegendComponent, AdvancedPieChartComponent, AreaChartComponent, AreaChartModule, AreaChartNormalizedComponent, AreaChartStackedComponent, AreaComponent, AreaSeriesComponent, AxesModule, AxisLabelComponent, BarChartModule, BarChartType, BarComponent, BarHorizontal2DComponent, BarHorizontalComponent, BarHorizontalNormalizedComponent, BarHorizontalStackedComponent, BarLabelComponent, BarOrientation, BarVertical2DComponent, BarVerticalComponent, BarVerticalNormalizedComponent, BarVerticalStackedComponent, BaseChartComponent, BoxChartComponent, BoxChartModule, BoxComponent, BoxSeriesComponent, BubbleChartComponent, BubbleChartModule, BubbleSeriesComponent, CardComponent, CardSeriesComponent, ChartCommonModule, ChartComponent, CircleComponent, CircleSeriesComponent, ColorHelper, CountUpDirective, D0Types, GaugeArcComponent, GaugeAxisComponent, GaugeComponent, GaugeModule, GridPanelComponent, GridPanelSeriesComponent, HeatCellSeriesComponent, HeatMapCellComponent, HeatMapComponent, HeatMapModule, LegendComponent, LegendEntryComponent, LegendPosition, LegendType, LineChartComponent, LineChartModule, LineComponent, LineSeriesComponent, LinearGaugeComponent, NgxChartsModule, NumberCardComponent, NumberCardModule, Orientation, PieArcComponent, PieChartComponent, PieChartModule, PieGridComponent, PieGridSeriesComponent, PieLabelComponent, PieSeriesComponent, PlacementTypes, PolarChartComponent, PolarChartModule, PolarSeriesComponent, ScaleLegendComponent, ScaleType, SeriesHorizontal, SeriesType, SeriesVerticalComponent, ShowTypes, StyleTypes, SvgLinearGradientComponent, SvgRadialGradientComponent, TextAnchor, Timeline, TooltipArea, TooltipContentComponent, TooltipDirective, TooltipModule, TooltipService, TreeMapCellComponent, TreeMapCellSeriesComponent, TreeMapComponent, TreeMapModule, VisibilityObserver, XAxisComponent, XAxisTicksComponent, YAxisComponent, YAxisTicksComponent, calculateViewDimensions, colorSets, count, decimalChecker, escapeLabel, formatLabel, getDomain, getScale, getScaleType, getUniqueXDomainValues, getXDomainArray, gridLayout, gridSize, hexToRgb, id, invertColor, reduceTicks, shadeRGBColor, sortByDomain, sortByTime, sortLinear, throttle, throttleable, tickFormat, trimLabel };
-//# sourceMappingURL=javierBaro-ngx-charts-v2.mjs.map
+//# sourceMappingURL=javierbaromorales-ngx-charts-v2.mjs.map
