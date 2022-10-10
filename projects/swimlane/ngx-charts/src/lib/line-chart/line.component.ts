@@ -21,7 +21,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'g[ngx-charts-line]',
   template: `
-    <svg:marker [attr.id]="markerId" markerWidth="8" markerHeight="8" refX="5" refY="5">
+    <svg:marker *ngIf="showCircles" [attr.id]="markerId" markerWidth="8" markerHeight="8" refX="5" refY="5">
       <svg:circle cx="5" cy="5" r="3" [attr.fill]="stroke" style="stroke: none" />
     </svg:marker>
     <svg:g *ngIf="!isSSR">
@@ -32,6 +32,9 @@ import { DomSanitizer } from '@angular/platform-browser';
         [attr.fill]="fill"
         [attr.stroke]="stroke"
         stroke-width="1.5px"
+        [style.marker-start]="markerRef"
+        [style.marker-mid]="markerRef"
+        [style.marker-end]="markerRef"
       />
     </svg:g>
     <svg:g *ngIf="isSSR">
@@ -62,6 +65,7 @@ export class LineComponent implements OnChanges, OnInit {
   @Input() data: Series;
   @Input() fill: string = 'none';
   @Input() animations: boolean = true;
+  @Input() showCircles: boolean = true;
 
   // @Output() select = new EventEmitter();
 
