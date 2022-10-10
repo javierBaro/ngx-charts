@@ -1,10 +1,10 @@
 {
-  "name": "@swimlane/ngx-charts",
+  "name": "javierBaro/ngx-charts-v2",
   "version": "20.1.0",
   "description": "Declarative Charting Framework for Angular",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swimlane/ngx-charts.git"
+    "url": "git+https://github.com/javierBaro/ngx-charts.git"
   },
   "keywords": [
     "angular",

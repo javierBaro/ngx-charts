@@ -15,10 +15,15 @@ import { trigger, style, animate, transition } from '@angular/animations';
 import { select } from 'd3-selection';
 import { Series } from '../models/chart-data.model';
 import { isPlatformServer } from '@angular/common';
+import { id } from '../utils/id';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'g[ngx-charts-line]',
   template: `
+    <svg:marker [attr.id]="markerId" markerWidth="8" markerHeight="8" refX="5" refY="5">
+      <svg:circle cx="5" cy="5" r="3" [attr.fill]="stroke" style="stroke: none" />
+    </svg:marker>
     <svg:g *ngIf="!isSSR">
       <svg:path
         [@animationState]="'active'"
@@ -62,10 +67,15 @@ export class LineComponent implements OnChanges, OnInit {
 
   initialized: boolean = false;
   initialPath: string;
+  markerId: string = '';
+  markerRef: any = {};
 
   isSSR = false;
 
-  constructor(private element: ElementRef, @Inject(PLATFORM_ID) private platformId: any) {}
+  constructor(private element: ElementRef, @Inject(PLATFORM_ID) private platformId: any, private sanitizer: DomSanitizer) {
+    this.markerId = `marker${id()}`;
+    this.markerRef = this.sanitizer.bypassSecurityTrustStyle(`url(#${this.markerId})`);
+  }
 
   ngOnInit() {
     if (isPlatformServer(this.platformId)) {
