@@ -1,6 +1,6 @@
 {
   "name": "@javierbaromorales/ngx-charts-v2",
-  "version": "20.1.0",
+  "version": "20.1.2",
   "description": "Declarative Charting Framework for Angular",
   "repository": {
     "type": "git",
