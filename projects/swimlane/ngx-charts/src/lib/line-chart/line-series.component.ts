@@ -44,6 +44,7 @@ import { Gradient } from '../common/types/gradient.interface';
         [stroke]="stroke"
         [animations]="animations"
         [showCircles]="showCircles"
+        [oneItem]="oneItem"
         [class.active]="isActive(data)"
         [class.inactive]="isInactive(data)"
       />
@@ -75,6 +76,7 @@ export class LineSeriesComponent implements OnChanges {
   @Input() hasRange: boolean;
   @Input() animations: boolean = true;
   @Input() showCircles: boolean = true;
+  @Input() oneItem: boolean = false;
 
   path: string;
   outerPath: string;

@@ -25,7 +25,7 @@ import { DomSanitizer } from '@angular/platform-browser';
       <svg:circle cx="5" cy="5" r="3" [attr.fill]="stroke" style="stroke: none" />
     </svg:marker>
     <svg:g *ngIf="!isSSR">
-      <svg:path
+      <svg:path *ngIf="!oneItem"
         [@animationState]="'active'"
         class="line"
         [attr.d]="initialPath"
@@ -35,6 +35,14 @@ import { DomSanitizer } from '@angular/platform-browser';
         [style.marker-start]="markerRef"
         [style.marker-mid]="markerRef"
         [style.marker-end]="markerRef"
+      />
+      <svg:path *ngIf="oneItem"
+        [@animationState]="'active'"
+        class="line"
+        [attr.d]="initialPath"
+        [attr.fill]="fill"
+        stroke-width="1.5px"
+        [style.marker-start]="markerRef"
       />
     </svg:g>
     <svg:g *ngIf="isSSR">
@@ -66,6 +74,7 @@ export class LineComponent implements OnChanges, OnInit {
   @Input() fill: string = 'none';
   @Input() animations: boolean = true;
   @Input() showCircles: boolean = true;
+  @Input() oneItem: boolean = false;
 
   // @Output() select = new EventEmitter();
 
@@ -79,6 +88,7 @@ export class LineComponent implements OnChanges, OnInit {
   constructor(private element: ElementRef, @Inject(PLATFORM_ID) private platformId: any, private sanitizer: DomSanitizer) {
     this.markerId = `marker${id()}`;
     this.markerRef = this.sanitizer.bypassSecurityTrustStyle(`url(#${this.markerId})`);
+    console.log(this.oneItem);
   }
 
   ngOnInit() {

@@ -95,6 +95,7 @@ import { isPlatformServer } from '@angular/common';
                 [hasRange]="hasRange"
                 [animations]="animations"
                 [showCircles]="showCircles"
+                [oneItem]="oneItem"
               />
             </svg:g>
           </svg:g>
@@ -113,6 +114,7 @@ import { isPlatformServer } from '@angular/common';
                 [hasRange]="hasRange"
                 [animations]="animations"
                 [showCircles]="showCircles"
+                [oneItem]="oneItem"
               />
             </svg:g>
           </svg:g>
@@ -176,6 +178,7 @@ import { isPlatformServer } from '@angular/common';
             [hasRange]="hasRange"
             [animations]="animations"
             [showCircles]="showCircles"
+            [oneItem]="oneItem"
           />
         </svg:g>
       </svg:g>
@@ -237,6 +240,7 @@ export class LineChartComponent extends BaseChartComponent implements OnInit {
   @Input() yScaleMin: number;
   @Input() yScaleMax: number;
   @Input() showCircles: boolean = true;
+  @Input() oneItem: boolean = false;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
