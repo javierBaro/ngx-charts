@@ -12,6 +12,7 @@ export declare class LineComponent implements OnChanges, OnInit {
     fill: string;
     animations: boolean;
     showCircles: boolean;
+    oneItem: boolean;
     initialized: boolean;
     initialPath: string;
     markerId: string;
@@ -22,5 +23,5 @@ export declare class LineComponent implements OnChanges, OnInit {
     ngOnChanges(changes: SimpleChanges): void;
     updatePathEl(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LineComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LineComponent, "g[ngx-charts-line]", never, { "path": "path"; "stroke": "stroke"; "data": "data"; "fill": "fill"; "animations": "animations"; "showCircles": "showCircles"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LineComponent, "g[ngx-charts-line]", never, { "path": "path"; "stroke": "stroke"; "data": "data"; "fill": "fill"; "animations": "animations"; "showCircles": "showCircles"; "oneItem": "oneItem"; }, {}, never, never>;
 }

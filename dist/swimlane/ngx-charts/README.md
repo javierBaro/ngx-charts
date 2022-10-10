@@ -55,6 +55,28 @@ npm i @swimlane/ngx-charts --save
 
 To learn how to use the ngx-charts components to build custom charts and find examples, please refer to our [Custom Charts Page](https://github.com/swimlane/ngx-charts/blob/master/docs/custom-charts.md).
 
+## Custom Line Chart
+
+1) new feature for line-chart show dots(circles) by new attr "showCircles"
+
+```
+<ngx-charts-line-chart
+[showCircles]="true" //default value true
+>
+
+</ngx-charts-line-chart>
+```
+
+2) new feature for line-chart with only one value this remove line and last dot(circle)
+
+```
+<ngx-charts-line-chart
+[oneItem]="false" //default value false
+>
+
+</ngx-charts-line-chart>
+```
+
 ## Release
 
 - Checkout master (`git checkout master`)

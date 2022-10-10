@@ -17,6 +17,7 @@ export declare class LineSeriesComponent implements OnChanges {
     hasRange: boolean;
     animations: boolean;
     showCircles: boolean;
+    oneItem: boolean;
     path: string;
     outerPath: string;
     areaPath: string;
@@ -37,5 +38,5 @@ export declare class LineSeriesComponent implements OnChanges {
     isActive(entry: any): boolean;
     isInactive(entry: any): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<LineSeriesComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LineSeriesComponent, "g[ngx-charts-line-series]", never, { "data": "data"; "xScale": "xScale"; "yScale": "yScale"; "colors": "colors"; "scaleType": "scaleType"; "curve": "curve"; "activeEntries": "activeEntries"; "rangeFillOpacity": "rangeFillOpacity"; "hasRange": "hasRange"; "animations": "animations"; "showCircles": "showCircles"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LineSeriesComponent, "g[ngx-charts-line-series]", never, { "data": "data"; "xScale": "xScale"; "yScale": "yScale"; "colors": "colors"; "scaleType": "scaleType"; "curve": "curve"; "activeEntries": "activeEntries"; "rangeFillOpacity": "rangeFillOpacity"; "hasRange": "hasRange"; "animations": "animations"; "showCircles": "showCircles"; "oneItem": "oneItem"; }, {}, never, never>;
 }

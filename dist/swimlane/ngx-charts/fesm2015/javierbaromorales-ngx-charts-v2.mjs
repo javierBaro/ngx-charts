@@ -14069,6 +14069,7 @@ class LineComponent {
         this.fill = 'none';
         this.animations = true;
         this.showCircles = true;
+        this.oneItem = false;
         // @Output() select = new EventEmitter();
         this.initialized = false;
         this.markerId = '';
@@ -14076,6 +14077,7 @@ class LineComponent {
         this.isSSR = false;
         this.markerId = `marker${id()}`;
         this.markerRef = this.sanitizer.bypassSecurityTrustStyle(`url(#${this.markerId})`);
+        console.log(this.oneItem);
     }
     ngOnInit() {
         if (isPlatformServer(this.platformId)) {
@@ -14102,12 +14104,12 @@ class LineComponent {
     }
 }
 LineComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: LineComponent, deps: [{ token: i0.ElementRef }, { token: PLATFORM_ID }, { token: i1.DomSanitizer }], target: i0.ɵɵFactoryTarget.Component });
-LineComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: LineComponent, selector: "g[ngx-charts-line]", inputs: { path: "path", stroke: "stroke", data: "data", fill: "fill", animations: "animations", showCircles: "showCircles" }, usesOnChanges: true, ngImport: i0, template: `
+LineComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: LineComponent, selector: "g[ngx-charts-line]", inputs: { path: "path", stroke: "stroke", data: "data", fill: "fill", animations: "animations", showCircles: "showCircles", oneItem: "oneItem" }, usesOnChanges: true, ngImport: i0, template: `
     <svg:marker *ngIf="showCircles" [attr.id]="markerId" markerWidth="8" markerHeight="8" refX="5" refY="5">
       <svg:circle cx="5" cy="5" r="3" [attr.fill]="stroke" style="stroke: none" />
     </svg:marker>
     <svg:g *ngIf="!isSSR">
-      <svg:path
+      <svg:path *ngIf="!oneItem"
         [@animationState]="'active'"
         class="line"
         [attr.d]="initialPath"
@@ -14117,6 +14119,14 @@ LineComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version:
         [style.marker-start]="markerRef"
         [style.marker-mid]="markerRef"
         [style.marker-end]="markerRef"
+      />
+      <svg:path *ngIf="oneItem"
+        [@animationState]="'active'"
+        class="line"
+        [attr.d]="initialPath"
+        [attr.fill]="fill"
+        stroke-width="1.5px"
+        [style.marker-start]="markerRef"
       />
     </svg:g>
     <svg:g *ngIf="isSSR">
@@ -14144,7 +14154,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
       <svg:circle cx="5" cy="5" r="3" [attr.fill]="stroke" style="stroke: none" />
     </svg:marker>
     <svg:g *ngIf="!isSSR">
-      <svg:path
+      <svg:path *ngIf="!oneItem"
         [@animationState]="'active'"
         class="line"
         [attr.d]="initialPath"
@@ -14154,6 +14164,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
         [style.marker-start]="markerRef"
         [style.marker-mid]="markerRef"
         [style.marker-end]="markerRef"
+      />
+      <svg:path *ngIf="oneItem"
+        [@animationState]="'active'"
+        class="line"
+        [attr.d]="initialPath"
+        [attr.fill]="fill"
+        stroke-width="1.5px"
+        [style.marker-start]="markerRef"
       />
     </svg:g>
     <svg:g *ngIf="isSSR">
@@ -14192,12 +14210,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                 type: Input
             }], showCircles: [{
                 type: Input
+            }], oneItem: [{
+                type: Input
             }] } });
 
 class LineSeriesComponent {
     constructor() {
         this.animations = true;
         this.showCircles = true;
+        this.oneItem = false;
         this.barOrientation = BarOrientation;
     }
     ngOnChanges(changes) {
@@ -14324,7 +14345,7 @@ class LineSeriesComponent {
     }
 }
 LineSeriesComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: LineSeriesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-LineSeriesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: LineSeriesComponent, selector: "g[ngx-charts-line-series]", inputs: { data: "data", xScale: "xScale", yScale: "yScale", colors: "colors", scaleType: "scaleType", curve: "curve", activeEntries: "activeEntries", rangeFillOpacity: "rangeFillOpacity", hasRange: "hasRange", animations: "animations", showCircles: "showCircles" }, usesOnChanges: true, ngImport: i0, template: `
+LineSeriesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: LineSeriesComponent, selector: "g[ngx-charts-line-series]", inputs: { data: "data", xScale: "xScale", yScale: "yScale", colors: "colors", scaleType: "scaleType", curve: "curve", activeEntries: "activeEntries", rangeFillOpacity: "rangeFillOpacity", hasRange: "hasRange", animations: "animations", showCircles: "showCircles", oneItem: "oneItem" }, usesOnChanges: true, ngImport: i0, template: `
     <svg:g>
       <defs>
         <svg:g
@@ -14357,6 +14378,7 @@ LineSeriesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", ve
         [stroke]="stroke"
         [animations]="animations"
         [showCircles]="showCircles"
+        [oneItem]="oneItem"
         [class.active]="isActive(data)"
         [class.inactive]="isInactive(data)"
       />
@@ -14373,7 +14395,7 @@ LineSeriesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", ve
         [animations]="animations"
       />
     </svg:g>
-  `, isInline: true, components: [{ type: SvgLinearGradientComponent, selector: "g[ngx-charts-svg-linear-gradient]", inputs: ["orientation", "name", "stops"] }, { type: AreaComponent, selector: "g[ngx-charts-area]", inputs: ["data", "path", "startingPath", "fill", "opacity", "startOpacity", "endOpacity", "gradient", "stops", "animations"], outputs: ["select"] }, { type: LineComponent, selector: "g[ngx-charts-line]", inputs: ["path", "stroke", "data", "fill", "animations", "showCircles"] }], directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+  `, isInline: true, components: [{ type: SvgLinearGradientComponent, selector: "g[ngx-charts-svg-linear-gradient]", inputs: ["orientation", "name", "stops"] }, { type: AreaComponent, selector: "g[ngx-charts-area]", inputs: ["data", "path", "startingPath", "fill", "opacity", "startOpacity", "endOpacity", "gradient", "stops", "animations"], outputs: ["select"] }, { type: LineComponent, selector: "g[ngx-charts-line]", inputs: ["path", "stroke", "data", "fill", "animations", "showCircles", "oneItem"] }], directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: LineSeriesComponent, decorators: [{
             type: Component,
             args: [{
@@ -14411,6 +14433,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
         [stroke]="stroke"
         [animations]="animations"
         [showCircles]="showCircles"
+        [oneItem]="oneItem"
         [class.active]="isActive(data)"
         [class.inactive]="isInactive(data)"
       />
@@ -14452,6 +14475,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                 type: Input
             }], showCircles: [{
                 type: Input
+            }], oneItem: [{
+                type: Input
             }] } });
 
 class LineChartComponent extends BaseChartComponent {
@@ -14472,6 +14497,7 @@ class LineChartComponent extends BaseChartComponent {
         this.showRefLines = false;
         this.showRefLabels = true;
         this.showCircles = true;
+        this.oneItem = false;
         this.activate = new EventEmitter();
         this.deactivate = new EventEmitter();
         this.margin = [10, 20, 10, 20];
@@ -14701,7 +14727,7 @@ class LineChartComponent extends BaseChartComponent {
     }
 }
 LineChartComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: LineChartComponent, deps: null, target: i0.ɵɵFactoryTarget.Component });
-LineChartComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: LineChartComponent, selector: "ngx-charts-line-chart", inputs: { legend: "legend", legendTitle: "legendTitle", legendPosition: "legendPosition", xAxis: "xAxis", yAxis: "yAxis", showXAxisLabel: "showXAxisLabel", showYAxisLabel: "showYAxisLabel", xAxisLabel: "xAxisLabel", yAxisLabel: "yAxisLabel", autoScale: "autoScale", timeline: "timeline", gradient: "gradient", showGridLines: "showGridLines", curve: "curve", activeEntries: "activeEntries", schemeType: "schemeType", rangeFillOpacity: "rangeFillOpacity", trimXAxisTicks: "trimXAxisTicks", trimYAxisTicks: "trimYAxisTicks", rotateXAxisTicks: "rotateXAxisTicks", maxXAxisTickLength: "maxXAxisTickLength", maxYAxisTickLength: "maxYAxisTickLength", xAxisTickFormatting: "xAxisTickFormatting", yAxisTickFormatting: "yAxisTickFormatting", xAxisTicks: "xAxisTicks", yAxisTicks: "yAxisTicks", roundDomains: "roundDomains", tooltipDisabled: "tooltipDisabled", showRefLines: "showRefLines", referenceLines: "referenceLines", showRefLabels: "showRefLabels", xScaleMin: "xScaleMin", xScaleMax: "xScaleMax", yScaleMin: "yScaleMin", yScaleMax: "yScaleMax", showCircles: "showCircles" }, outputs: { activate: "activate", deactivate: "deactivate" }, host: { listeners: { "mouseleave": "hideCircles()" } }, queries: [{ propertyName: "tooltipTemplate", first: true, predicate: ["tooltipTemplate"], descendants: true }, { propertyName: "seriesTooltipTemplate", first: true, predicate: ["seriesTooltipTemplate"], descendants: true }], usesInheritance: true, ngImport: i0, template: `
+LineChartComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.0", type: LineChartComponent, selector: "ngx-charts-line-chart", inputs: { legend: "legend", legendTitle: "legendTitle", legendPosition: "legendPosition", xAxis: "xAxis", yAxis: "yAxis", showXAxisLabel: "showXAxisLabel", showYAxisLabel: "showYAxisLabel", xAxisLabel: "xAxisLabel", yAxisLabel: "yAxisLabel", autoScale: "autoScale", timeline: "timeline", gradient: "gradient", showGridLines: "showGridLines", curve: "curve", activeEntries: "activeEntries", schemeType: "schemeType", rangeFillOpacity: "rangeFillOpacity", trimXAxisTicks: "trimXAxisTicks", trimYAxisTicks: "trimYAxisTicks", rotateXAxisTicks: "rotateXAxisTicks", maxXAxisTickLength: "maxXAxisTickLength", maxYAxisTickLength: "maxYAxisTickLength", xAxisTickFormatting: "xAxisTickFormatting", yAxisTickFormatting: "yAxisTickFormatting", xAxisTicks: "xAxisTicks", yAxisTicks: "yAxisTicks", roundDomains: "roundDomains", tooltipDisabled: "tooltipDisabled", showRefLines: "showRefLines", referenceLines: "referenceLines", showRefLabels: "showRefLabels", xScaleMin: "xScaleMin", xScaleMax: "xScaleMax", yScaleMin: "yScaleMin", yScaleMax: "yScaleMax", showCircles: "showCircles", oneItem: "oneItem" }, outputs: { activate: "activate", deactivate: "deactivate" }, host: { listeners: { "mouseleave": "hideCircles()" } }, queries: [{ propertyName: "tooltipTemplate", first: true, predicate: ["tooltipTemplate"], descendants: true }, { propertyName: "seriesTooltipTemplate", first: true, predicate: ["seriesTooltipTemplate"], descendants: true }], usesInheritance: true, ngImport: i0, template: `
     <ngx-charts-chart
       [view]="[width, height]"
       [showLegend]="legend"
@@ -14770,6 +14796,7 @@ LineChartComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", ver
                 [hasRange]="hasRange"
                 [animations]="animations"
                 [showCircles]="showCircles"
+                [oneItem]="oneItem"
               />
             </svg:g>
           </svg:g>
@@ -14788,6 +14815,7 @@ LineChartComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", ver
                 [hasRange]="hasRange"
                 [animations]="animations"
                 [showCircles]="showCircles"
+                [oneItem]="oneItem"
               />
             </svg:g>
           </svg:g>
@@ -14851,11 +14879,12 @@ LineChartComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", ver
             [hasRange]="hasRange"
             [animations]="animations"
             [showCircles]="showCircles"
+            [oneItem]="oneItem"
           />
         </svg:g>
       </svg:g>
     </ngx-charts-chart>
-  `, isInline: true, styles: [".ngx-charts-outer{-webkit-animation:chartFadeIn linear .6s;animation:chartFadeIn linear .6s}@-webkit-keyframes chartFadeIn{0%{opacity:0}20%{opacity:0}to{opacity:1}}@keyframes chartFadeIn{0%{opacity:0}20%{opacity:0}to{opacity:1}}.ngx-charts{float:left;overflow:visible}.ngx-charts .circle,.ngx-charts .cell,.ngx-charts .bar,.ngx-charts .arc{cursor:pointer}.ngx-charts .bar.active,.ngx-charts .bar:hover,.ngx-charts .cell.active,.ngx-charts .cell:hover,.ngx-charts .arc.active,.ngx-charts .arc:hover,.ngx-charts .card.active,.ngx-charts .card:hover{opacity:.8;transition:opacity .1s ease-in-out}.ngx-charts .bar:focus,.ngx-charts .cell:focus,.ngx-charts .arc:focus,.ngx-charts .card:focus{outline:none}.ngx-charts .bar.hidden,.ngx-charts .cell.hidden,.ngx-charts .arc.hidden,.ngx-charts .card.hidden{display:none}.ngx-charts g:focus{outline:none}.ngx-charts .line-series.inactive,.ngx-charts .line-series-range.inactive,.ngx-charts .polar-series-path.inactive,.ngx-charts .polar-series-area.inactive,.ngx-charts .area-series.inactive{transition:opacity .1s ease-in-out;opacity:.2}.ngx-charts .line-highlight{display:none}.ngx-charts .line-highlight.active{display:block}.ngx-charts .area{opacity:.6}.ngx-charts .circle:hover{cursor:pointer}.ngx-charts .label{font-size:12px;font-weight:400}.ngx-charts .tooltip-anchor{fill:#000}.ngx-charts .gridline-path{stroke:#ddd;stroke-width:1;fill:none}.ngx-charts .refline-path{stroke:#a8b2c7;stroke-width:1;stroke-dasharray:5;stroke-dashoffset:5}.ngx-charts .refline-label{font-size:9px}.ngx-charts .reference-area{fill-opacity:.05;fill:#000}.ngx-charts .gridline-path-dotted{stroke:#ddd;stroke-width:1;fill:none;stroke-dasharray:1,20;stroke-dashoffset:3}.ngx-charts .grid-panel rect{fill:none}.ngx-charts .grid-panel.odd rect{fill:#0000000d}\n"], components: [{ type: ChartComponent, selector: "ngx-charts-chart", inputs: ["view", "showLegend", "legendOptions", "legendType", "activeEntries", "animations"], outputs: ["legendLabelClick", "legendLabelActivate", "legendLabelDeactivate"] }, { type: XAxisComponent, selector: "g[ngx-charts-x-axis]", inputs: ["xScale", "dims", "trimTicks", "rotateTicks", "maxTickLength", "tickFormatting", "showGridLines", "showLabel", "labelText", "ticks", "xAxisTickCount", "xOrient", "xAxisOffset"], outputs: ["dimensionsChanged"] }, { type: YAxisComponent, selector: "g[ngx-charts-y-axis]", inputs: ["yScale", "dims", "trimTicks", "maxTickLength", "tickFormatting", "ticks", "showGridLines", "showLabel", "labelText", "yAxisTickCount", "yOrient", "referenceLines", "showRefLines", "showRefLabels", "yAxisOffset"], outputs: ["dimensionsChanged"] }, { type: LineSeriesComponent, selector: "g[ngx-charts-line-series]", inputs: ["data", "xScale", "yScale", "colors", "scaleType", "curve", "activeEntries", "rangeFillOpacity", "hasRange", "animations", "showCircles"] }, { type: TooltipArea, selector: "g[ngx-charts-tooltip-area]", inputs: ["dims", "xSet", "xScale", "yScale", "results", "colors", "showPercentage", "tooltipDisabled", "tooltipTemplate"], outputs: ["hover"] }, { type: CircleSeriesComponent, selector: "g[ngx-charts-circle-series]", inputs: ["data", "type", "xScale", "yScale", "colors", "scaleType", "visibleValue", "activeEntries", "tooltipDisabled", "tooltipTemplate"], outputs: ["select", "activate", "deactivate"] }, { type: Timeline, selector: "g[ngx-charts-timeline]", inputs: ["view", "results", "scheme", "customColors", "legend", "autoScale", "scaleType", "height"], outputs: ["select", "onDomainChange"] }], directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], animations: [
+  `, isInline: true, styles: [".ngx-charts-outer{-webkit-animation:chartFadeIn linear .6s;animation:chartFadeIn linear .6s}@-webkit-keyframes chartFadeIn{0%{opacity:0}20%{opacity:0}to{opacity:1}}@keyframes chartFadeIn{0%{opacity:0}20%{opacity:0}to{opacity:1}}.ngx-charts{float:left;overflow:visible}.ngx-charts .circle,.ngx-charts .cell,.ngx-charts .bar,.ngx-charts .arc{cursor:pointer}.ngx-charts .bar.active,.ngx-charts .bar:hover,.ngx-charts .cell.active,.ngx-charts .cell:hover,.ngx-charts .arc.active,.ngx-charts .arc:hover,.ngx-charts .card.active,.ngx-charts .card:hover{opacity:.8;transition:opacity .1s ease-in-out}.ngx-charts .bar:focus,.ngx-charts .cell:focus,.ngx-charts .arc:focus,.ngx-charts .card:focus{outline:none}.ngx-charts .bar.hidden,.ngx-charts .cell.hidden,.ngx-charts .arc.hidden,.ngx-charts .card.hidden{display:none}.ngx-charts g:focus{outline:none}.ngx-charts .line-series.inactive,.ngx-charts .line-series-range.inactive,.ngx-charts .polar-series-path.inactive,.ngx-charts .polar-series-area.inactive,.ngx-charts .area-series.inactive{transition:opacity .1s ease-in-out;opacity:.2}.ngx-charts .line-highlight{display:none}.ngx-charts .line-highlight.active{display:block}.ngx-charts .area{opacity:.6}.ngx-charts .circle:hover{cursor:pointer}.ngx-charts .label{font-size:12px;font-weight:400}.ngx-charts .tooltip-anchor{fill:#000}.ngx-charts .gridline-path{stroke:#ddd;stroke-width:1;fill:none}.ngx-charts .refline-path{stroke:#a8b2c7;stroke-width:1;stroke-dasharray:5;stroke-dashoffset:5}.ngx-charts .refline-label{font-size:9px}.ngx-charts .reference-area{fill-opacity:.05;fill:#000}.ngx-charts .gridline-path-dotted{stroke:#ddd;stroke-width:1;fill:none;stroke-dasharray:1,20;stroke-dashoffset:3}.ngx-charts .grid-panel rect{fill:none}.ngx-charts .grid-panel.odd rect{fill:#0000000d}\n"], components: [{ type: ChartComponent, selector: "ngx-charts-chart", inputs: ["view", "showLegend", "legendOptions", "legendType", "activeEntries", "animations"], outputs: ["legendLabelClick", "legendLabelActivate", "legendLabelDeactivate"] }, { type: XAxisComponent, selector: "g[ngx-charts-x-axis]", inputs: ["xScale", "dims", "trimTicks", "rotateTicks", "maxTickLength", "tickFormatting", "showGridLines", "showLabel", "labelText", "ticks", "xAxisTickCount", "xOrient", "xAxisOffset"], outputs: ["dimensionsChanged"] }, { type: YAxisComponent, selector: "g[ngx-charts-y-axis]", inputs: ["yScale", "dims", "trimTicks", "maxTickLength", "tickFormatting", "ticks", "showGridLines", "showLabel", "labelText", "yAxisTickCount", "yOrient", "referenceLines", "showRefLines", "showRefLabels", "yAxisOffset"], outputs: ["dimensionsChanged"] }, { type: LineSeriesComponent, selector: "g[ngx-charts-line-series]", inputs: ["data", "xScale", "yScale", "colors", "scaleType", "curve", "activeEntries", "rangeFillOpacity", "hasRange", "animations", "showCircles", "oneItem"] }, { type: TooltipArea, selector: "g[ngx-charts-tooltip-area]", inputs: ["dims", "xSet", "xScale", "yScale", "results", "colors", "showPercentage", "tooltipDisabled", "tooltipTemplate"], outputs: ["hover"] }, { type: CircleSeriesComponent, selector: "g[ngx-charts-circle-series]", inputs: ["data", "type", "xScale", "yScale", "colors", "scaleType", "visibleValue", "activeEntries", "tooltipDisabled", "tooltipTemplate"], outputs: ["select", "activate", "deactivate"] }, { type: Timeline, selector: "g[ngx-charts-timeline]", inputs: ["view", "results", "scheme", "customColors", "legend", "autoScale", "scaleType", "height"], outputs: ["select", "onDomainChange"] }], directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], animations: [
         trigger('animationState', [
             transition(':leave', [
                 style({
@@ -14938,6 +14967,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                 [hasRange]="hasRange"
                 [animations]="animations"
                 [showCircles]="showCircles"
+                [oneItem]="oneItem"
               />
             </svg:g>
           </svg:g>
@@ -14956,6 +14986,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
                 [hasRange]="hasRange"
                 [animations]="animations"
                 [showCircles]="showCircles"
+                [oneItem]="oneItem"
               />
             </svg:g>
           </svg:g>
@@ -15019,6 +15050,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
             [hasRange]="hasRange"
             [animations]="animations"
             [showCircles]="showCircles"
+            [oneItem]="oneItem"
           />
         </svg:g>
       </svg:g>
@@ -15106,6 +15138,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImpor
             }], yScaleMax: [{
                 type: Input
             }], showCircles: [{
+                type: Input
+            }], oneItem: [{
                 type: Input
             }], activate: [{
                 type: Output
@@ -15427,7 +15461,7 @@ PolarSeriesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", v
         (deactivate)="deactivate.emit({ name: circle.data.series })"
       ></svg:g>
     </svg:g>
-  `, isInline: true, components: [{ type: SvgRadialGradientComponent, selector: "g[ngx-charts-svg-radial-gradient]", inputs: ["color", "name", "startOpacity", "endOpacity", "cx", "cy", "stops"] }, { type: LineComponent, selector: "g[ngx-charts-line]", inputs: ["path", "stroke", "data", "fill", "animations", "showCircles"] }, { type: CircleComponent, selector: "g[ngx-charts-circle]", inputs: ["cx", "cy", "r", "fill", "stroke", "data", "classNames", "circleOpacity", "pointerEvents"], outputs: ["select", "activate", "deactivate"] }], directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: TooltipDirective, selector: "[ngx-tooltip]", inputs: ["tooltipCssClass", "tooltipTitle", "tooltipAppendToBody", "tooltipSpacing", "tooltipDisabled", "tooltipShowCaret", "tooltipPlacement", "tooltipAlignment", "tooltipType", "tooltipCloseOnClickOutside", "tooltipCloseOnMouseLeave", "tooltipHideTimeout", "tooltipShowTimeout", "tooltipTemplate", "tooltipShowEvent", "tooltipContext", "tooltipImmediateExit"], outputs: ["show", "hide"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+  `, isInline: true, components: [{ type: SvgRadialGradientComponent, selector: "g[ngx-charts-svg-radial-gradient]", inputs: ["color", "name", "startOpacity", "endOpacity", "cx", "cy", "stops"] }, { type: LineComponent, selector: "g[ngx-charts-line]", inputs: ["path", "stroke", "data", "fill", "animations", "showCircles", "oneItem"] }, { type: CircleComponent, selector: "g[ngx-charts-circle]", inputs: ["cx", "cy", "r", "fill", "stroke", "data", "classNames", "circleOpacity", "pointerEvents"], outputs: ["select", "activate", "deactivate"] }], directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: TooltipDirective, selector: "[ngx-tooltip]", inputs: ["tooltipCssClass", "tooltipTitle", "tooltipAppendToBody", "tooltipSpacing", "tooltipDisabled", "tooltipShowCaret", "tooltipPlacement", "tooltipAlignment", "tooltipType", "tooltipCloseOnClickOutside", "tooltipCloseOnMouseLeave", "tooltipHideTimeout", "tooltipShowTimeout", "tooltipTemplate", "tooltipShowEvent", "tooltipContext", "tooltipImmediateExit"], outputs: ["show", "hide"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.0", ngImport: i0, type: PolarSeriesComponent, decorators: [{
             type: Component,
             args: [{
